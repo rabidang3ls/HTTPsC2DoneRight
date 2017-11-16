@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 # Original Version: https://raw.githubusercontent.com/killswitch-GUI/CobaltStrike-ToolKit/master/HTTPsC2DoneRight.sh
 
 
@@ -7,23 +6,14 @@
 runuser=$(whoami)
 tempdir=$(pwd)
 
-# Echo Title
-clear
-echo '=========================================================================='
-echo ' HTTPS C2 Done Right Setup Script | [Updated]: 11/2017'
-echo '=========================================================================='
-echo ' [Web]: Http://CyberSyndicates.com | [Twitter]: @KillSwitch-GUI'
-echo ' Slightly modified by @rabidang3ls'
-echo '=========================================================================='
-
 if [ "$#" -ne 3 ]; then
-    echo "Usage:\t$0 <fqdn> <password for CS> <CS location>"
-    echo "Example:\t$0 c2.example.com ak39s&9:lK /opt/cobaltstrike"
+    echo "Usage:\t$0 <fqdn> <file with password for CS> <CS location>"
+    echo "Example:\t$0 c2.example.com /root/.password.txt /opt/cobaltstrike"
     exit 1
 fi
 
 domain=$1
-password=$2
+password="`cat $2`"
 cobaltStrike=$3
 domainPkcs="$domain.p12"
 domainStore="$domain.store"
